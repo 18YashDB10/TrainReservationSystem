@@ -1,7 +1,101 @@
 import { useState } from "react";
 import Header from "./Header";
-import TrainData from "./Assets/TrainData.json";
+// import TrainData from "./Assets/TrainData.json";
 import emailjs from 'emailjs-com';
+
+let TrainData = [
+  {
+      "fromStation": "New York",
+      "toStation": "Washington DC",
+      "availableSeats": 45,
+      "trainName": "Northeast Express",
+      "duration": "3h 30m",
+      "arrivalTime": "14:30",
+      "departureTime": "11:00"
+  },
+  {
+      "fromStation": "Los Angeles",
+      "toStation": "San Francisco",
+      "availableSeats": 32,
+      "trainName": "Pacific Surfliner",
+      "duration": "8h 45m",
+      "arrivalTime": "18:45",
+      "departureTime": "10:00"
+  },
+  {
+      "fromStation": "Chicago",
+      "toStation": "Detroit",
+      "availableSeats": 28,
+      "trainName": "Midwest Express",
+      "duration": "4h 15m",
+      "arrivalTime": "15:15",
+      "departureTime": "11:00"
+  },
+  {
+      "fromStation": "Boston",
+      "toStation": "Philadelphia",
+      "availableSeats": 50,
+      "trainName": "Liberty Line",
+      "duration": "5h 0m",
+      "arrivalTime": "17:00",
+      "departureTime": "12:00"
+  },
+  {
+      "fromStation": "Seattle",
+      "toStation": "Portland",
+      "availableSeats": 20,
+      "trainName": "Cascades Express",
+      "duration": "3h 30m",
+      "arrivalTime": "14:30",
+      "departureTime": "11:00"
+  },
+  {
+      "fromStation": "Miami",
+      "toStation": "Orlando",
+      "availableSeats": 18,
+      "trainName": "Florida Breeze",
+      "duration": "4h 0m",
+      "arrivalTime": "14:00",
+      "departureTime": "10:00"
+  },
+  {
+      "fromStation": "Dallas",
+      "toStation": "Houston",
+      "availableSeats": 40,
+      "trainName": "Texas Eagle",
+      "duration": "5h 15m",
+      "arrivalTime": "18:15",
+      "departureTime": "13:00"
+  },
+  {
+      "fromStation": "Atlanta",
+      "toStation": "Charlotte",
+      "availableSeats": 22,
+      "trainName": "Southern Star",
+      "duration": "4h 45m",
+      "arrivalTime": "16:45",
+      "departureTime": "12:00"
+  },
+  {
+      "fromStation": "Denver",
+      "toStation": "Salt Lake City",
+      "availableSeats": 35,
+      "trainName": "Mountain Explorer",
+      "duration": "8h 30m",
+      "arrivalTime": "20:30",
+      "departureTime": "12:00"
+  },
+  {
+      "fromStation": "Phoenix",
+      "toStation": "Las Vegas",
+      "availableSeats": 48,
+      "trainName": "Desert Runner",
+      "duration": "5h 0m",
+      "arrivalTime": "17:00",
+      "departureTime": "12:00"
+  }
+]
+
 
 const getUniqueStations = () => {
   // Extract stations from the TrainData
@@ -26,6 +120,28 @@ export default function TrainReservation() {
   const generateOTP = () => {
     return Math.floor(100000 + Math.random() * 900000).toString();
   };
+
+  async function sendConfirmation() {
+      const templateParams = {
+        user_email:userEmail,
+        fromStation:selectedTrain.fromStation,
+        toStation:selectedTrain.toStation,
+        trainName:selectedTrain.trainName,
+        duration:selectedTrain.duration,
+        departureTime:selectedTrain.departureTime,
+        arrivalTime:selectedTrain.arrivalTime
+      }
+      try {
+        await emailjs.send(
+          'service_vlh4mvg',    // Replace with your EmailJS Service ID
+          'template_ecdd9ob',   // Replace with your EmailJS Template ID
+          templateParams,
+          '1wDNRHxwreD5quKb7'     // Replace with your EmailJS Public Key
+        );
+      } catch (error) {
+        console.log(error);
+      }
+  }
 
   async function sendEmail(userrOtp){
     console.log(userOtp);
@@ -86,6 +202,23 @@ export default function TrainReservation() {
     setUserEmail(e.target.value);
   }
 
+  function handleEnteredOtpChange(e){
+    setEnteredOtp(e.target.value)
+  }
+
+  function handleConfirmBooking(e){
+    console.log(enteredOtp);
+    if(enteredOtp == userOtp){
+        alert("Booking Successfull. Refer Email for more details")
+        selectedTrain.availableSeats = selectedTrain.availableSeats - 1;
+        sendConfirmation();
+        setRerender(!rerender);
+    }else{
+      alert("Booking Failure ! Try again");
+      setRerender(!rerender);
+    }
+  }
+
   let [From, setFrom] = useState(getUniqueStations().uniqueFromStations);
   let [To, setTo] = useState(getUniqueStations().uniqueToStations);
   let [SelectedFrom, setSelectedFrom] = useState("--Select--");
@@ -95,6 +228,8 @@ export default function TrainReservation() {
   let [selectedTrain, setSelectedTrain] = useState({});
   let [userEmail, setUserEmail] = useState("");
   let [userOtp, setUserOtp] = useState("");
+  let [enteredOtp, setEnteredOtp] = useState("");
+  let [rerender,setRerender] = useState(true);
 
   return (
     <>
@@ -304,6 +439,7 @@ export default function TrainReservation() {
                   class="form-control"
                   id="floatingPassword"
                   placeholder="Enter OTP"
+                  onChange={handleEnteredOtpChange}
                 />
                 <label for="floatingPassword">Enter OTP</label>
               </div>
@@ -314,9 +450,11 @@ export default function TrainReservation() {
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                Cancel Booking
               </button>
-              <button type="button" class="btn btn-primary">
+              <button  type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal" onClick={handleConfirmBooking}>
                 Confirm Booking
               </button>
             </div>
