@@ -1,0 +1,92 @@
+[
+    {
+        "fromStation": "New York",
+        "toStation": "Washington DC",
+        "availableSeats": 45,
+        "trainName": "Northeast Express",
+        "duration": "3h 30m",
+        "arrivalTime": "14:30",
+        "departureTime": "11:00"
+    },
+    {
+        "fromStation": "Los Angeles",
+        "toStation": "San Francisco",
+        "availableSeats": 32,
+        "trainName": "Pacific Surfliner",
+        "duration": "8h 45m",
+        "arrivalTime": "18:45",
+        "departureTime": "10:00"
+    },
+    {
+        "fromStation": "Chicago",
+        "toStation": "Detroit",
+        "availableSeats": 28,
+        "trainName": "Midwest Express",
+        "duration": "4h 15m",
+        "arrivalTime": "15:15",
+        "departureTime": "11:00"
+    },
+    {
+        "fromStation": "Boston",
+        "toStation": "Philadelphia",
+        "availableSeats": 50,
+        "trainName": "Liberty Line",
+        "duration": "5h 0m",
+        "arrivalTime": "17:00",
+        "departureTime": "12:00"
+    },
+    {
+        "fromStation": "Seattle",
+        "toStation": "Portland",
+        "availableSeats": 20,
+        "trainName": "Cascades Express",
+        "duration": "3h 30m",
+        "arrivalTime": "14:30",
+        "departureTime": "11:00"
+    },
+    {
+        "fromStation": "Miami",
+        "toStation": "Orlando",
+        "availableSeats": 18,
+        "trainName": "Florida Breeze",
+        "duration": "4h 0m",
+        "arrivalTime": "14:00",
+        "departureTime": "10:00"
+    },
+    {
+        "fromStation": "Dallas",
+        "toStation": "Houston",
+        "availableSeats": 40,
+        "trainName": "Texas Eagle",
+        "duration": "5h 15m",
+        "arrivalTime": "18:15",
+        "departureTime": "13:00"
+    },
+    {
+        "fromStation": "Atlanta",
+        "toStation": "Charlotte",
+        "availableSeats": 22,
+        "trainName": "Southern Star",
+        "duration": "4h 45m",
+        "arrivalTime": "16:45",
+        "departureTime": "12:00"
+    },
+    {
+        "fromStation": "Denver",
+        "toStation": "Salt Lake City",
+        "availableSeats": 35,
+        "trainName": "Mountain Explorer",
+        "duration": "8h 30m",
+        "arrivalTime": "20:30",
+        "departureTime": "12:00"
+    },
+    {
+        "fromStation": "Phoenix",
+        "toStation": "Las Vegas",
+        "availableSeats": 48,
+        "trainName": "Desert Runner",
+        "duration": "5h 0m",
+        "arrivalTime": "17:00",
+        "departureTime": "12:00"
+    }
+]
