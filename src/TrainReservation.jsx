@@ -133,10 +133,10 @@ export default function TrainReservation() {
       }
       try {
         await emailjs.send(
-          'service_vlh4mvg',    // Replace with your EmailJS Service ID
-          'template_ecdd9ob',   // Replace with your EmailJS Template ID
+          '',    // Replace with your EmailJS Service ID
+          '',   // Replace with your EmailJS Template ID
           templateParams,
-          '1wDNRHxwreD5quKb7'     // Replace with your EmailJS Public Key
+          ''     // Replace with your EmailJS Public Key
         );
       } catch (error) {
         console.log(error);
@@ -152,10 +152,10 @@ export default function TrainReservation() {
     
     try {
       await emailjs.send(
-        'service_vlh4mvg',    // Replace with your EmailJS Service ID
-        'template_9vnfrxu',   // Replace with your EmailJS Template ID
+        '',    // Replace with your EmailJS Service ID
+        '',   // Replace with your EmailJS Template ID
         templateParams,
-        '1wDNRHxwreD5quKb7'     // Replace with your EmailJS Public Key
+        ''     // Replace with your EmailJS Public Key
       );
     } catch (error) {
       console.log(error);
